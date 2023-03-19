@@ -1,3 +1,5 @@
+// Using lists with FOR, FORIN and FOROFF
+
 const service = require('./service')
 
 async function main() {
@@ -10,6 +12,17 @@ async function main() {
             names.push(pessoa.name)
         }
         console.timeEnd('for')
+        console.time('forin')
+        for(let i in result.results) {
+            const pessoa = result.results[i]
+            names.push(pessoa.name)
+        }
+        console.timeEnd('forin')
+        console.time('foroff')
+        for(pessoa of result.results) {
+            names.push(pessoa.name)
+        }
+        console.timeEnd('foroff')
         console.log(`names`, names)
     } catch (error) {
         console.error(`erro interno`, error)
